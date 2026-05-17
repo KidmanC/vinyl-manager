@@ -11,41 +11,55 @@ A REST API for managing a music album catalog with user reviews. Built with Fast
 - **Business rule**: Albums with associated reviews cannot be deleted (409 Conflict)
 - **Pagination & filtering**: List albums with pagination and genre filter
 
-## Prerequisites
+## Quick Start
 
-- Python 3.11+
-- `SECRET_KEY` environment variable (see below)
-
-## Setup
+### 1. Clone
 
 ```bash
-# Clone and enter the project
+git clone https://github.com/KidmanC/vinyl-manager.git
 cd vinyl-manager
+```
 
-# Install dependencies
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-# Copy and edit environment variables
+### 3. Set environment variables
+
+```bash
+# Windows
+copy .env.example .env
+
+# Linux/Mac
 cp .env.example .env
-# Set a strong SECRET_KEY in .env
+```
 
-# Run the server
+Open `.env` and set a strong `SECRET_KEY`:
+
+```bash
+# Generate one with:
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+**Available variables:**
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `SECRET_KEY` | **Yes** | — | JWT signing key |
+| `DATABASE_URL` | No | `sqlite:///./vinyl_manager.db` | Database connection string |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | No | `60` | JWT token expiration |
+
+### 4. Run the server
+
+```bash
 uvicorn app.main:app --reload
 ```
 
 The API will be available at `http://localhost:8000`.
 
-**Environment variables:**
-
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `SECRET_KEY` | **Yes** | — | JWT signing key. Generate with: `python -c "import secrets; print(secrets.token_hex(32))"` |
-| `DATABASE_URL` | No | `sqlite:///./vinyl_manager.db` | Database connection string |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | No | `60` | JWT token expiration in minutes |
-
-## Seed Data
-
-To populate the database with demo content:
+### 5. Populate demo data (optional)
 
 ```bash
 python seed.py
@@ -56,7 +70,7 @@ This creates:
 - **5 albums**: Abbey Road, Thriller, Kind of Blue, Nevermind, Rumours
 - **3 reviews** on the first three albums
 
-## Run Tests
+### 6. Run tests
 
 ```bash
 pytest -v
