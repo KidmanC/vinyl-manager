@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 
+from app.controllers.user_controller import login, register
 from app.core.database import get_db
-from app.schemas.user import UserCreate, LoginRequest
-from app.controllers.user_controller import register, login
+from app.schemas.user import LoginRequest, UserCreate
 
 router = APIRouter(prefix="/users", tags=["users"])
 

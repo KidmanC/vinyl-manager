@@ -1,5 +1,5 @@
-from sqlalchemy.orm import Session
 from fastapi import HTTPException
+from sqlalchemy.orm import Session
 
 from app.models.review_model import Review
 
@@ -9,6 +9,8 @@ def execute(db: Session, review_id: int, user_id: int) -> None:
     if review is None:
         raise HTTPException(status_code=404, detail="Review not found")
     if review.user_id != user_id:
-        raise HTTPException(status_code=403, detail="Not authorized to delete this review")
+        raise HTTPException(
+            status_code=403, detail="Not authorized to delete this review"
+        )
     db.delete(review)
     db.commit()

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.core.database import Base
@@ -16,4 +16,6 @@ class Album(Base):
     owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
     owner = relationship("User")
-    reviews = relationship("Review", back_populates="album", cascade="all, delete-orphan")
+    reviews = relationship(
+        "Review", back_populates="album", cascade="all, delete-orphan"
+    )

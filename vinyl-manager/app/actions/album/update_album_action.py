@@ -1,9 +1,9 @@
-from sqlalchemy.orm import Session
 from fastapi import HTTPException
+from sqlalchemy.orm import Session
 
+from app.actions.album.get_album_action import execute as get_album
 from app.models.album_model import Album
 from app.schemas.album import AlbumUpdate
-from app.actions.album.get_album_action import execute as get_album
 
 
 def execute(db: Session, album_id: int, data: AlbumUpdate, user_id: int) -> Album:

@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-from app.schemas.user import UserResponse, Token
-from app.actions.user.register_user_action import execute as register_user
 from app.actions.user.login_user_action import execute as login_user
+from app.actions.user.register_user_action import execute as register_user
+from app.schemas.user import Token, UserResponse
 
 
 def register(db: Session, username: str, email: str, password: str) -> UserResponse:

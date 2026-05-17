@@ -16,8 +16,8 @@ def db_session():
         poolclass=StaticPool,
     )
     Base.metadata.create_all(bind=engine)
-    TestSession = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    session = TestSession()
+    test_session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    session = test_session()
     try:
         yield session
     finally:
@@ -40,15 +40,21 @@ def client(db_session):
 
 @pytest.fixture
 def token(client):
-    client.post("/users/register", json={
-        "username": "alice",
-        "email": "alice@example.com",
-        "password": "secret123",
-    })
-    resp = client.post("/users/login", json={
-        "username": "alice",
-        "password": "secret123",
-    })
+    client.post(
+        "/users/register",
+        json={
+            "username": "alice",
+            "email": "alice@example.com",
+            "password": "secret123",
+        },
+    )
+    resp = client.post(
+        "/users/login",
+        json={
+            "username": "alice",
+            "password": "secret123",
+        },
+    )
     return resp.json()["access_token"]
 
 

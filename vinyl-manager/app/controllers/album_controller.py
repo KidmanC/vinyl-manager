@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Session
 
-from app.schemas.album import AlbumCreate, AlbumUpdate, AlbumResponse, AlbumListResponse
-from app.actions.album.list_albums_action import execute as list_albums
-from app.actions.album.get_album_action import execute as get_album
 from app.actions.album.create_album_action import execute as create_album
-from app.actions.album.update_album_action import execute as update_album
 from app.actions.album.delete_album_action import execute as delete_album
+from app.actions.album.get_album_action import execute as get_album
+from app.actions.album.list_albums_action import execute as list_albums
+from app.actions.album.update_album_action import execute as update_album
+from app.schemas.album import AlbumCreate, AlbumListResponse, AlbumResponse, AlbumUpdate
 
 
 def list_endpoint(

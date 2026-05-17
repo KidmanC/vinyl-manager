@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 
-from app.schemas.review import ReviewCreate, ReviewResponse
-from app.actions.review.list_reviews_action import execute as list_reviews
 from app.actions.review.create_review_action import execute as create_review
 from app.actions.review.delete_review_action import execute as delete_review
+from app.actions.review.list_reviews_action import execute as list_reviews
+from app.schemas.review import ReviewCreate, ReviewResponse
 
 
 def list_endpoint(db: Session, album_id: int) -> list[ReviewResponse]:

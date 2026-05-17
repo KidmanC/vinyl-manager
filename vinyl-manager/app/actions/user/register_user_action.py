@@ -1,14 +1,16 @@
-from sqlalchemy.orm import Session
 from fastapi import HTTPException
+from sqlalchemy.orm import Session
 
-from app.models.user_model import User
 from app.core.security import hash_password
+from app.models.user_model import User
 
 
 def execute(db: Session, username: str, email: str, password: str) -> User:
-    existing = db.query(User).filter(
-        (User.username == username) | (User.email == email)
-    ).first()
+    existing = (
+        db.query(User)
+        .filter((User.username == username) | (User.email == email))
+        .first()
+    )
     if existing:
         if existing.username == username:
             raise HTTPException(status_code=409, detail="Username already taken")

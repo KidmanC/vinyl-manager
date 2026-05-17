@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Depends
 
+from app.controllers.review_controller import (
+    create_endpoint,
+    delete_endpoint,
+    list_endpoint,
+)
 from app.core.database import get_db
 from app.core.security import get_current_user
 from app.models.user_model import User
 from app.schemas.review import ReviewCreate
-from app.controllers.review_controller import (
-    list_endpoint,
-    create_endpoint,
-    delete_endpoint,
-)
 
 router = APIRouter(tags=["reviews"])
 

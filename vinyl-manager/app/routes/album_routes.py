@@ -1,16 +1,16 @@
 from fastapi import APIRouter, Depends
 
+from app.controllers.album_controller import (
+    create_endpoint,
+    delete_endpoint,
+    get_endpoint,
+    list_endpoint,
+    update_endpoint,
+)
 from app.core.database import get_db
 from app.core.security import get_current_user
 from app.models.user_model import User
 from app.schemas.album import AlbumCreate, AlbumUpdate
-from app.controllers.album_controller import (
-    list_endpoint,
-    get_endpoint,
-    create_endpoint,
-    update_endpoint,
-    delete_endpoint,
-)
 
 router = APIRouter(prefix="/albums", tags=["albums"])
 

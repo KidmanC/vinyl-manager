@@ -1,6 +1,6 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, CheckConstraint
+from sqlalchemy import CheckConstraint, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.core.database import Base
@@ -14,7 +14,7 @@ class Review(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     text = Column(String, nullable=False)
     rating = Column(Integer, nullable=False)
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    created_at = Column(DateTime, default=lambda: datetime.now(UTC))
 
     album = relationship("Album", back_populates="reviews")
     user = relationship("User")
