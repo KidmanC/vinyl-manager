@@ -57,6 +57,15 @@ def test_login_success(client):
     assert data["token_type"] == "bearer"
 
 
+def test_register_validation_error_returns_400(client):
+    resp = client.post("/users/register", json={
+        "username": "",
+        "email": "not-an-email",
+        "password": "",
+    })
+    assert resp.status_code == 400
+
+
 def test_login_invalid_password(client):
     client.post(
         "/users/register",
