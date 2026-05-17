@@ -53,29 +53,55 @@ pytest -v
 ```
 vinyl-manager/
 ├── app/
-│   ├── main.py           # FastAPI app entry point
-│   ├── database.py        # SQLAlchemy engine and session
-│   ├── auth/
-│   │   └── jwt.py         # JWT and password utilities
-│   ├── models/
-│   │   ├── user.py        # User model
-│   │   ├── album.py       # Album model
-│   │   └── review.py      # Review model
-│   ├── schemas/
-│   │   ├── user.py        # User Pydantic schemas
-│   │   ├── album.py       # Album Pydantic schemas
-│   │   └── review.py      # Review Pydantic schemas
-│   ├── services/
-│   │   ├── user_service.py   # User business logic
-│   │   ├── album_service.py  # Album business logic
-│   │   └── review_service.py # Review business logic
-│   └── routers/
-│       ├── users.py       # User endpoints
-│       ├── albums.py      # Album endpoints
-│       └── reviews.py     # Review endpoints
-└── tests/
-    ├── conftest.py        # Fixtures (in-memory DB, auth)
-    ├── test_users.py      # 4 user tests
-    ├── test_albums.py     # 5 album tests
-    └── test_reviews.py    # 3 review tests
+│   ├── main.py              # FastAPI entry point
+│   ├── core/
+│   │   ├── config.py        # Settings via env vars (DATABASE_URL, SECRET_KEY)
+│   │   ├── database.py      # SQLAlchemy engine and session
+│   │   └── security.py      # JWT tokens and password hashing
+│   ├── routes/              # HTTP route definitions (thin)
+│   │   ├── user_routes.py
+│   │   ├── album_routes.py
+│   │   └── review_routes.py
+│   ├── controllers/         # Orchestrate actions, format responses
+│   │   ├── user_controller.py
+│   │   ├── album_controller.py
+│   │   └── review_controller.py
+│   ├── actions/             # Business logic (one file per use case)
+│   │   ├── user/
+│   │   │   ├── register_user_action.py
+│   │   │   └── login_user_action.py
+│   │   ├── album/
+│   │   │   ├── create_album_action.py
+│   │   │   ├── get_album_action.py
+│   │   │   ├── list_albums_action.py
+│   │   │   ├── update_album_action.py
+│   │   │   └── delete_album_action.py
+│   │   └── review/
+│   │       ├── create_review_action.py
+│   │       ├── list_reviews_action.py
+│   │       └── delete_review_action.py
+│   ├── models/              # SQLAlchemy ORM models
+│   │   ├── user_model.py
+│   │   ├── album_model.py
+│   │   └── review_model.py
+│   └── schemas/             # Pydantic DTOs (request/response)
+│       ├── user.py
+│       ├── album.py
+│       └── review.py
+├── tests/
+│   ├── conftest.py          # Fixtures (in-memory DB, auth)
+│   ├── test_users.py        # 4 user tests
+│   ├── test_albums.py       # 5 album tests
+│   └── test_reviews.py      # 3 review tests
+├── AGENTIC.md               # AI-assisted development documentation
+├── requirements.txt
+└── .gitignore
+```
+
+## Architecture Flow
+
+```
+Request → routes/ → controllers/ → actions/ → models/ → DB
+              ↕
+         core/security (JWT auth)
 ```
