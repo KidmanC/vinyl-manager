@@ -58,11 +58,14 @@ def test_login_success(client):
 
 
 def test_register_validation_error(client):
-    resp = client.post("/users/register", json={
-        "username": "",
-        "email": "not-an-email",
-        "password": "",
-    })
+    resp = client.post(
+        "/users/register",
+        json={
+            "username": "",
+            "email": "not-an-email",
+            "password": "",
+        },
+    )
     assert resp.status_code == 422
 
 

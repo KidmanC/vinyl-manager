@@ -11,6 +11,11 @@ A REST API for managing a music album catalog with user reviews. Built with Fast
 - **Business rule**: Albums with associated reviews cannot be deleted (409 Conflict)
 - **Pagination & filtering**: List albums with pagination and genre filter
 
+## Prerequisites
+
+- Python 3.11+
+- `SECRET_KEY` environment variable (see below)
+
 ## Setup
 
 ```bash
@@ -20,11 +25,23 @@ cd vinyl-manager
 # Install dependencies
 pip install -r requirements.txt
 
+# Copy and edit environment variables
+cp .env.example .env
+# Set a strong SECRET_KEY in .env
+
 # Run the server
 uvicorn app.main:app --reload
 ```
 
 The API will be available at `http://localhost:8000`.
+
+**Environment variables:**
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `SECRET_KEY` | **Yes** | — | JWT signing key. Generate with: `python -c "import secrets; print(secrets.token_hex(32))"` |
+| `DATABASE_URL` | No | `sqlite:///./vinyl_manager.db` | Database connection string |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | No | `60` | JWT token expiration in minutes |
 
 ## Run Tests
 
