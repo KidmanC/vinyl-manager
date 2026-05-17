@@ -43,6 +43,19 @@ The API will be available at `http://localhost:8000`.
 | `DATABASE_URL` | No | `sqlite:///./vinyl_manager.db` | Database connection string |
 | `ACCESS_TOKEN_EXPIRE_MINUTES` | No | `60` | JWT token expiration in minutes |
 
+## Seed Data
+
+To populate the database with demo content:
+
+```bash
+python seed.py
+```
+
+This creates:
+- **Demo user**: `demo` / `demo1234`
+- **5 albums**: Abbey Road, Thriller, Kind of Blue, Nevermind, Rumours
+- **3 reviews** on the first three albums
+
 ## Run Tests
 
 ```bash
