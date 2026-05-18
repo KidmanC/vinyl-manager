@@ -16,8 +16,8 @@ A REST API for managing a music album catalog with user reviews. Built with Fast
 ### 1. Clone
 
 ```bash
-git clone https://github.com/KidmanC/vinyl-manager.git
-cd vinyl-manager
+git clone https://github.com/KidmanC/techassessment_kidman.git
+cd techassessment_kidman/vinyl-manager
 ```
 
 ### 2. Install dependencies

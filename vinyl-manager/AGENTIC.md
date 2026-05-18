@@ -44,7 +44,7 @@ The AI generated the initial project structure with FastAPI + SQLite, including 
 I asked the AI to restructure from a flat services/repositories pattern to a cleaner routes → controllers → actions → models architecture. The AI created separate action files (one per use case), controller files for orchestration, and route files for HTTP definitions.
 
 ### Prompt 3: Apply FastAPI skill
-> "la primera" (installing fastapi/fastapi skill)
+> "encuentra una skill para fastapi" (installing fastapi/fastapi skill)
 
 After installing the official FastAPI skill, the AI updated the code to use the `Annotated` pattern for dependencies (`SessionDep`, `CurrentUser` type aliases) and aligned router conventions. I accepted this as it follows official best practices.
 
