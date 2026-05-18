@@ -54,7 +54,7 @@ python -c "import secrets; print(secrets.token_hex(32))"
 ### 4. Run the server
 
 ```bash
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --reload
 ```
 
 The API will be available at `http://localhost:8000`.
