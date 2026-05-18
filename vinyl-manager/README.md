@@ -116,13 +116,13 @@ vinyl-manager/
 │   │   │   └── login_user_action.py
 │   │   ├── album/
 │   │   │   ├── create_album_action.py
-│   │   │   ├── get_album_action.py
-│   │   │   ├── list_albums_action.py
+│   │   │   ├── read_album_action.py
+│   │   │   ├── read_albums_action.py
 │   │   │   ├── update_album_action.py
 │   │   │   └── delete_album_action.py
 │   │   └── review/
 │   │       ├── create_review_action.py
-│   │       ├── list_reviews_action.py
+│   │       ├── read_reviews_action.py
 │   │       └── delete_review_action.py
 │   ├── models/              # SQLAlchemy ORM models
 │   │   ├── user_model.py
@@ -136,7 +136,7 @@ vinyl-manager/
 │   ├── conftest.py          # Fixtures (in-memory DB, auth)
 │   ├── test_users.py        # 4 user tests
 │   ├── test_albums.py       # 5 album tests
-│   └── test_reviews.py      # 3 review tests
+│   └── test_reviews.py      # 4 review tests (13 total)
 ├── AGENTIC.md               # AI-assisted development documentation
 ├── requirements.txt
 └── .gitignore
