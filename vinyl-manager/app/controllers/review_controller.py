@@ -16,5 +16,6 @@ def create_endpoint(
     return create_review(db, album_id, data, user_id)
 
 
-def delete_endpoint(db: Session, review_id: int, user_id: int) -> None:
+def delete_endpoint(db: Session, review_id: int, user_id: int) -> dict:
     delete_review(db, review_id, user_id)
+    return {"message": "Review deleted successfully"}

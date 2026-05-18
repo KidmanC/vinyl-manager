@@ -64,7 +64,8 @@ def test_delete_review(client, token, auth_header):
     review_id = review_resp.json()["id"]
 
     resp = client.delete(f"/reviews/{review_id}", headers=auth_header)
-    assert resp.status_code == 204
+    assert resp.status_code == 200
+    assert resp.json()["message"] == "Review deleted successfully"
 
     list_resp = client.get(f"/albums/{album_id}/reviews")
     assert len(list_resp.json()) == 0

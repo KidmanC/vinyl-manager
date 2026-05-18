@@ -29,5 +29,6 @@ def update_endpoint(
     return update_album(db, album_id, data, user_id)
 
 
-def delete_endpoint(db: Session, album_id: int, user_id: int) -> None:
+def delete_endpoint(db: Session, album_id: int, user_id: int) -> dict:
     delete_album(db, album_id, user_id)
+    return {"message": "Album deleted successfully"}

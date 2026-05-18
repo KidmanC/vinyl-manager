@@ -28,10 +28,10 @@ def create_review_route(
     return create_endpoint(db, album_id, payload, current_user.id)
 
 
-@router.delete("/reviews/{review_id}", status_code=204)
+@router.delete("/reviews/{review_id}")
 def delete_review_route(
     review_id: int,
     db=Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    delete_endpoint(db, review_id, current_user.id)
+    return delete_endpoint(db, review_id, current_user.id)

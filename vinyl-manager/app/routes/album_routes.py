@@ -49,10 +49,10 @@ def update_album_route(
     return update_endpoint(db, album_id, payload, current_user.id)
 
 
-@router.delete("/{album_id}", status_code=204)
+@router.delete("/{album_id}")
 def delete_album_route(
     album_id: int,
     db=Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    delete_endpoint(db, album_id, current_user.id)
+    return delete_endpoint(db, album_id, current_user.id)
