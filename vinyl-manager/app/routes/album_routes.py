@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends
 
 from app.controllers.album_controller import (
-    create_endpoint,
-    delete_endpoint,
-    get_endpoint,
-    list_endpoint,
-    update_endpoint,
+    create_album,
+    delete_album,
+    read_album,
+    read_albums,
+    update_album,
 )
 from app.core.database import get_db
 from app.core.security import get_current_user
@@ -22,12 +22,12 @@ def list_albums_route(
     genre: str | None = None,
     db=Depends(get_db),
 ):
-    return list_endpoint(db, page, page_size, genre)
+    return read_albums(db, page, page_size, genre)
 
 
 @router.get("/{album_id}")
 def get_album_route(album_id: int, db=Depends(get_db)):
-    return get_endpoint(db, album_id)
+    return read_album(db, album_id)
 
 
 @router.post("", status_code=201)
@@ -36,7 +36,7 @@ def create_album_route(
     db=Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    return create_endpoint(db, payload, current_user.id)
+    return create_album(db, payload, current_user.id)
 
 
 @router.put("/{album_id}")
@@ -46,7 +46,7 @@ def update_album_route(
     db=Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    return update_endpoint(db, album_id, payload, current_user.id)
+    return update_album(db, album_id, payload, current_user.id)
 
 
 @router.delete("/{album_id}")
@@ -55,4 +55,4 @@ def delete_album_route(
     db=Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    return delete_endpoint(db, album_id, current_user.id)
+    return delete_album(db, album_id, current_user.id)

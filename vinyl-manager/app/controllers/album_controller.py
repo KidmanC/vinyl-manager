@@ -1,34 +1,34 @@
 from sqlalchemy.orm import Session
 
-from app.actions.album.create_album_action import execute as create_album
-from app.actions.album.delete_album_action import execute as delete_album
-from app.actions.album.get_album_action import execute as get_album
-from app.actions.album.list_albums_action import execute as list_albums
-from app.actions.album.update_album_action import execute as update_album
+from app.actions.album.create_album_action import execute as create_album_action
+from app.actions.album.delete_album_action import execute as delete_album_action
+from app.actions.album.read_album_action import execute as read_album_action
+from app.actions.album.read_albums_action import execute as read_albums_action
+from app.actions.album.update_album_action import execute as update_album_action
 from app.schemas.album import AlbumCreate, AlbumListResponse, AlbumResponse, AlbumUpdate
 
 
-def list_endpoint(
+def read_albums(
     db: Session, page: int, page_size: int, genre: str | None
 ) -> AlbumListResponse:
-    items, total = list_albums(db, page, page_size, genre)
+    items, total = read_albums_action(db, page, page_size, genre)
     return AlbumListResponse(items=items, total=total, page=page, page_size=page_size)
 
 
-def get_endpoint(db: Session, album_id: int) -> AlbumResponse:
-    return get_album(db, album_id)
+def read_album(db: Session, album_id: int) -> AlbumResponse:
+    return read_album_action(db, album_id)
 
 
-def create_endpoint(db: Session, data: AlbumCreate, owner_id: int) -> AlbumResponse:
-    return create_album(db, data, owner_id)
+def create_album(db: Session, data: AlbumCreate, owner_id: int) -> AlbumResponse:
+    return create_album_action(db, data, owner_id)
 
 
-def update_endpoint(
+def update_album(
     db: Session, album_id: int, data: AlbumUpdate, user_id: int
 ) -> AlbumResponse:
-    return update_album(db, album_id, data, user_id)
+    return update_album_action(db, album_id, data, user_id)
 
 
-def delete_endpoint(db: Session, album_id: int, user_id: int) -> dict:
-    delete_album(db, album_id, user_id)
+def delete_album(db: Session, album_id: int, user_id: int) -> dict:
+    delete_album_action(db, album_id, user_id)
     return {"message": "Album deleted successfully"}
