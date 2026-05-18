@@ -23,7 +23,7 @@ cd vinyl-manager
 ### 2. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ### 3. Set environment variables
@@ -73,7 +73,7 @@ This creates:
 ### 6. Run tests
 
 ```bash
-pytest -v
+python -m pytest -v
 ```
 
 ## API Endpoints
