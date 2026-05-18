@@ -1,12 +1,12 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from app.actions.album.read_album_action import execute as read_album
+from app.actions.album.read_album_action import read_album
 from app.models.album_model import Album
 from app.schemas.album import AlbumUpdate
 
 
-def execute(db: Session, album_id: int, data: AlbumUpdate, user_id: int) -> Album:
+def update_album(db: Session, album_id: int, data: AlbumUpdate, user_id: int) -> Album:
     album = read_album(db, album_id)
     if album.owner_id != user_id:
         raise HTTPException(status_code=403, detail="Not authorized to edit this album")

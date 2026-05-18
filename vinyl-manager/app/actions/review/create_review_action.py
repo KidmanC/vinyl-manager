@@ -6,7 +6,9 @@ from app.models.review_model import Review
 from app.schemas.review import ReviewCreate
 
 
-def execute(db: Session, album_id: int, data: ReviewCreate, user_id: int) -> Review:
+def create_review(
+    db: Session, album_id: int, data: ReviewCreate, user_id: int
+) -> Review:
     album = db.query(Album).filter(Album.id == album_id).first()
     if album is None:
         raise HTTPException(status_code=404, detail="Album not found")

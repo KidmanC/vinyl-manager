@@ -5,7 +5,7 @@ from app.core.security import hash_password
 from app.models.user_model import User
 
 
-def execute(db: Session, username: str, email: str, password: str) -> User:
+def register_user(db: Session, username: str, email: str, password: str) -> User:
     existing = (
         db.query(User)
         .filter((User.username == username) | (User.email == email))

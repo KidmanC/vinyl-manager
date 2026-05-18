@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from app.actions.user.login_user_action import execute as login_user_action
-from app.actions.user.register_user_action import execute as register_user_action
+from app.actions.user.login_user_action import login_user as login_user_action
+from app.actions.user.register_user_action import register_user as register_user_action
 from app.schemas.user import Token, UserResponse
 
 

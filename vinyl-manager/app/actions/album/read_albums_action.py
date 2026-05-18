@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.models.album_model import Album
 
 
-def execute(
+def read_albums(
     db: Session, page: int = 1, page_size: int = 20, genre: str | None = None
 ) -> tuple[list[Album], int]:
     query = db.query(Album)

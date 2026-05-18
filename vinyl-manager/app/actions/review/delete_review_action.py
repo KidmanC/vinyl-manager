@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.models.review_model import Review
 
 
-def execute(db: Session, review_id: int, user_id: int) -> None:
+def delete_review(db: Session, review_id: int, user_id: int) -> None:
     review = db.query(Review).filter(Review.id == review_id).first()
     if review is None:
         raise HTTPException(status_code=404, detail="Review not found")

@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
 
-from app.actions.album.create_album_action import execute as create_album_action
-from app.actions.album.delete_album_action import execute as delete_album_action
-from app.actions.album.read_album_action import execute as read_album_action
-from app.actions.album.read_albums_action import execute as read_albums_action
-from app.actions.album.update_album_action import execute as update_album_action
+from app.actions.album.create_album_action import create_album as create_album_action
+from app.actions.album.delete_album_action import delete_album as delete_album_action
+from app.actions.album.read_album_action import read_album as read_album_action
+from app.actions.album.read_albums_action import read_albums as read_albums_action
+from app.actions.album.update_album_action import update_album as update_album_action
 from app.schemas.album import AlbumCreate, AlbumListResponse, AlbumResponse, AlbumUpdate
 
 
